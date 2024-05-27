@@ -1,0 +1,34 @@
+version: 2
+
+sources:
+  - name: public
+    database: homedb
+    schema: public
+    tables:
+      - name: movies
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 7
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 1042779
+        columns:
+          - name: id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+      - name: movies2
+        tests:
+          - dbt_expectations.expect_table_column_count_to_equal:
+              value: 7
+          - dbt_expectations.expect_table_row_count_to_equal:
+              value: 1042779
+        columns:
+          - name: id
+            description: Primary key of the table
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+

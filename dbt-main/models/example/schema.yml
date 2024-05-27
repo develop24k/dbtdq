@@ -1,0 +1,21 @@
+version: 2
+sources:
+  - name: public
+    database: homedb
+    schema: public
+    tables:
+      - name: movies
+        columns:
+          - name: id
+            description: Defined in DB
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
+
+          - name: title
+            description: Defined in DB
+            tests:
+              - unique
+              - not_null
+              - dbt_expectations.expect_column_to_exist
